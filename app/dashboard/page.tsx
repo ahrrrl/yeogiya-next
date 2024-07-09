@@ -1,10 +1,9 @@
-import styles from './page.module.css';
-import { fetchActivities } from './lib/apis/activities';
+import { fetchActivities } from '../lib/apis/activities';
 
-export default async function Home() {
+export default async function Dashboard() {
   const { activities } = await fetchActivities();
   return (
-    <main className={styles.main}>
+    <main>
       {activities.map((item) => {
         return (
           <div key={item.id}>
