@@ -1,17 +1,21 @@
 import { fetchActivities } from '../lib/apis/activities';
+import ActivitiesList from '../ui/dashboard/ActivitiesList';
+import SearchBar from '../ui/dashboard/SearchBar';
 
-export default async function Dashboard() {
-  const { activities } = await fetchActivities();
+export default async function Dashboard({
+  searchParams,
+}: {
+  searchParams?: {
+    page?: string;
+    keyword?: string;
+  };
+}) {
+  const query = searchParams || {};
+  const { activities } = await fetchActivities(query);
   return (
     <main>
-      {activities.map((item) => {
-        return (
-          <div key={item.id}>
-            <div>{item.title}</div>
-            <div>{item.price}</div>
-          </div>
-        );
-      })}
+      <SearchBar placeholder='검색해보세요!' />
+      <ActivitiesList activities={activities} />
     </main>
   );
 }

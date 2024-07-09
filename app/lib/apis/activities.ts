@@ -1,27 +1,25 @@
-interface Activitie {
-  id: number;
-  title: string;
-  userId: number;
-  description: string;
-  category: string;
-  price: number;
-  address: string;
-  bannerImageUrl: string;
-  rating: number;
-  reviewCount: number;
-  createdAt: string;
-  updatedAt: string;
-}
+import { FetchActivities } from '../tpyes/Activity';
 
-interface FetchActivities {
-  activities: Activitie[];
-  totalCount: number;
-}
-export async function fetchActivities(
-  page = 1,
-  size = 20
-): Promise<FetchActivities> {
-  const url = `https://sp-globalnomad-api.vercel.app/3-6/activities?method=offset&page=${page}&size=${size}`;
+export async function fetchActivities({
+  page = '1',
+  size = '12',
+  keyword,
+}: {
+  page?: string;
+  size?: string;
+  keyword?: string;
+}): Promise<FetchActivities> {
+  const params = new URLSearchParams({
+    method: 'offset',
+    page,
+    size,
+  });
+
+  if (keyword) {
+    params.set('keyword', keyword);
+  }
+
+  const url = `https://sp-globalnomad-api.vercel.app/3-6/activities?${params.toString()}`;
 
   try {
     const response = await fetch(url, {
