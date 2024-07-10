@@ -1,0 +1,75 @@
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-grow: 1;
+}
+
+.pageNumberBox {
+  display: flex;
+}
+
+.pageNumber {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  border: 1px solid;
+  &.roundedLeft {
+    border-radius: 0.375rem 0 0 0.375rem;
+  }
+  &.roundedRight {
+    border-radius: 0 0.375rem 0.375rem 0;
+  }
+  &.roundedSingle {
+    border-radius: 0.375rem;
+  }
+  &.active {
+    z-index: 10;
+    background-color: #2563eb;
+    border-color: #2563eb;
+    color: white;
+  }
+  &.hoverable:hover {
+    background-color: #f3f4f6;
+  }
+  &.middle {
+    color: #d1d5db;
+  }
+}
+
+.arrowContainer {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 0.375rem;
+  &.disabled {
+    pointer-events: none;
+    color: #d1d5db;
+  }
+  &.hoverable:hover {
+    background-color: #f3f4f6;
+  }
+  &.marginRight {
+    margin-right: 0.5rem;
+    @media (min-width: 768px) {
+      margin-right: 1rem;
+    }
+  }
+  &.marginLeft {
+    margin-left: 0.5rem;
+    @media (min-width: 768px) {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.arrowIcon {
+  width: 1rem;
+}

@@ -1,3 +1,4 @@
+import { BASE_URL } from '../constant';
 import { FetchActivities } from '../tpyes/Activity';
 
 export async function fetchActivities({
@@ -19,7 +20,7 @@ export async function fetchActivities({
     params.set('keyword', keyword);
   }
 
-  const url = `https://sp-globalnomad-api.vercel.app/3-6/activities?${params.toString()}`;
+  const url = `${BASE_URL}/activities?${params.toString()}`;
 
   try {
     const response = await fetch(url, {
