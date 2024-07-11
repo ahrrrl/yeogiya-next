@@ -3,6 +3,7 @@ import { PowerIcon } from '@heroicons/react/24/outline';
 import styles from './SideNav.module.scss';
 import NavLinks from './NavLinks';
 import Image from 'next/image';
+import { signOut } from '@/auth';
 
 export default function SideNav() {
   return (
@@ -17,10 +18,10 @@ export default function SideNav() {
         <div className={styles.spacer}></div>
         <form
           className={styles['sign-out-form']}
-          // action={async () => {
-          //   'use server';
-          //   await signOut();
-          // }}
+          action={async () => {
+            'use server';
+            await signOut();
+          }}
         >
           <button className={styles['sign-out-button']}>
             <PowerIcon className={styles['power-icon']} />
