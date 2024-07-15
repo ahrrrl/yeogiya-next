@@ -12,8 +12,8 @@ import styles from './NavLinks.module.scss';
 const links = [
   { name: '구경하기', href: '/dashboard', icon: HomeIcon },
   {
-    name: '예약확인',
-    href: '/dashboard/invoices',
+    name: '추가하기',
+    href: '/dashboard/mypage/create',
     icon: DocumentDuplicateIcon,
   },
   {
