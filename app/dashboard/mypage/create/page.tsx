@@ -5,6 +5,7 @@ import { useFormState } from 'react-dom';
 import styles from './Create.module.scss';
 import { create } from '@/app/lib/actions';
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
 
 type Schedule = {
   date: string;
@@ -122,7 +123,13 @@ function Create() {
             required
           />
           {bannerImage && (
-            <img src={URL.createObjectURL(bannerImage)} alt='Banner Preview' />
+            <Image
+              src={URL.createObjectURL(bannerImage)}
+              alt='Banner Preview'
+              width={300}
+              height={300}
+              objectFit='cover'
+            />
           )}
           <input
             type='file'
@@ -132,10 +139,12 @@ function Create() {
             onChange={handleSubImagesChange}
           />
           {subImages.map((file, index) => (
-            <img
+            <Image
               key={index}
               src={URL.createObjectURL(file)}
               alt={`Sub Image Preview ${index + 1}`}
+              width={300} // 적절한 너비와 높이 설정
+              height={300}
             />
           ))}
           {schedules.map((schedule, index) => (

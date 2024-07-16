@@ -1,0 +1,37 @@
+.sign-out-form {
+  button {
+    border: none;
+    display: flex;
+    height: 3rem;
+    width: 100%;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.375rem;
+    background-color: #f9fafb;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    &:hover {
+      background-color: #e0f2fe;
+      color: #2563eb;
+    }
+    @media (min-width: 768px) {
+      flex-grow: 0;
+      justify-content: flex-start;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .power-icon {
+      width: 1.5rem;
+    }
+
+    .sign-out-text {
+      display: none;
+      @media (min-width: 768px) {
+        display: block;
+      }
+    }
+  }
+}

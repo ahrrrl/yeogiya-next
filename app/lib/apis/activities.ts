@@ -1,4 +1,4 @@
-import { BASE_URL } from '../constant';
+import axiosInstance from '../axios/instance';
 import { FetchActivities } from '../tpyes/Activity';
 
 export async function fetchActivities({
@@ -20,22 +20,17 @@ export async function fetchActivities({
     params.set('keyword', keyword);
   }
 
-  const url = `${BASE_URL}/activities?${params.toString()}`;
-
   try {
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    });
+    const response = await axiosInstance.get(
+      `/activities?${params.toString()}`,
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+      }
+    );
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
+    return response.data;
   } catch (error) {
     console.error('Fetch error:', error);
     throw new Error('Failed to fetch card data.');

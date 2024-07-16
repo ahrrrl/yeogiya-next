@@ -3,7 +3,6 @@
 import { BASE_URL } from './constant';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 async function uploadImage(image: File): Promise<string> {
   const cookieStore = cookies();

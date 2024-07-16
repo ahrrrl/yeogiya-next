@@ -1,52 +1,38 @@
 'use client';
 
-import Cookies from 'js-cookie';
+import { login } from '@/app/lib/apis/auth';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import styles from './LoginForm.module.scss';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `https://sp-globalnomad-api.vercel.app/3-6/auth/login`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        setError(errorData.message || '로그인 요청에 실패했습니다.');
-        return;
-      }
-
-      const data = await response.json();
-      const { accessToken, refreshToken } = data;
-
-      // 토큰을 쿠키에 저장
-      Cookies.set('accessToken', accessToken);
-      Cookies.set('refreshToken', refreshToken);
-
+      const user = await login(email, password);
       // 로그인 성공 시 리다이렉트 또는 다른 동작 수행
-      window.location.href = '/dashboard';
+      router.replace('/dashboard');
     } catch (err) {
-      setError('로그인 요청에 실패했습니다.');
+      const errorMessage =
+        err instanceof Error ? err.message : '로그인 요청에 실패했습니다.';
+      setError(errorMessage);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor='email'>Email</label>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.inputGroup}>
+        <label className={styles.label} htmlFor='email'>
+          Email
+        </label>
         <input
+          className={styles.input}
           type='email'
           id='email'
           value={email}
@@ -54,9 +40,12 @@ export default function LoginForm() {
           required
         />
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div className={styles.inputGroup}>
+        <label className={styles.label} htmlFor='password'>
+          Password
+        </label>
         <input
+          className={styles.input}
           type='password'
           id='password'
           value={password}
@@ -64,8 +53,10 @@ export default function LoginForm() {
           required
         />
       </div>
-      {error && <p>{error}</p>}
-      <button type='submit'>Login</button>
+      {error && <p className={styles.error}>{error}</p>}
+      <button className={styles.button} type='submit'>
+        Login
+      </button>
     </form>
   );
 }
