@@ -17,7 +17,7 @@ export default function LoginForm() {
     try {
       const user = await login(email, password);
       // 로그인 성공 시 리다이렉트 또는 다른 동작 수행
-      router.replace('/dashboard');
+      router.push('/dashboard');
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : '로그인 요청에 실패했습니다.';

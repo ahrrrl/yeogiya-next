@@ -22,9 +22,9 @@ function LogoutButton() {
     router.push('/login');
   };
 
-  function handleLogin() {
+  const handleLogin = () => {
     router.push('/login');
-  }
+  };
 
   return isLoggedIn ? (
     <form className={styles['sign-out-form']}>
