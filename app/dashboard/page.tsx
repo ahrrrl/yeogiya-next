@@ -11,8 +11,6 @@ export default async function Dashboard({
     keyword?: string;
   };
 }) {
-  const number: number = 11;
-  console.log(number);
   const query = searchParams || {};
   const { activities, totalCount } = await fetchActivities(query);
   const totalPages = Math.floor(totalCount / 12 + 1);

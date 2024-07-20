@@ -3,15 +3,19 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const refreshToken = request.cookies.get('refreshToken')?.value;
-  console.log('refreshToken:', refreshToken);
+  const path = request.nextUrl.pathname;
 
-  if (!refreshToken) {
+  if (!refreshToken && path.startsWith('/dashboard')) {
     return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  if (refreshToken && path === '/login') {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: '/dashboard/mypage/:path*', // '/mypage' 경로에 대해 미들웨어 적용
+  matcher: ['/dashboard/mypage/:path*', '/login'],
 };

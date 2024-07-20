@@ -4,6 +4,7 @@ import { login } from '@/app/lib/apis/auth';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './LoginForm.module.scss';
+import useUserStore from '@/app/bearStore/store';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -12,12 +13,16 @@ export default function LoginForm() {
 
   const router = useRouter();
 
+  const { login: setLogin } = useUserStore((state) => state);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const user = await login(email, password);
+      setLogin(user);
       // 로그인 성공 시 리다이렉트 또는 다른 동작 수행
-      router.push('/dashboard');
+      window.location.href = '/dashboard';
+      // router.push('/dashboard');
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : '로그인 요청에 실패했습니다.';

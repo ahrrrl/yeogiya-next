@@ -19,7 +19,8 @@ function LogoutButton() {
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');
     // 로그인 페이지로 리디렉션
-    router.push('/login');
+    // router.push('/login');
+    window.location.href = '/login';
   };
 
   const handleLogin = () => {
