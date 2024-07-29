@@ -15,6 +15,14 @@ export default function LoginForm() {
 
   const { login: setLogin } = useUserStore((state) => state);
 
+  interface CustomError extends Error {
+    response?: {
+      data: {
+        message: string;
+      };
+    };
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -24,8 +32,11 @@ export default function LoginForm() {
       window.location.href = '/dashboard';
       // router.push('/dashboard');
     } catch (err) {
+      console.log(err);
       const errorMessage =
-        err instanceof Error ? err.message : '로그인 요청에 실패했습니다.';
+        err instanceof Error
+          ? (err as CustomError).response?.data.message || err.message
+          : '로그인 요청에 실패했습니다.';
       setError(errorMessage);
     }
   };
@@ -42,7 +53,6 @@ export default function LoginForm() {
           id='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
       </div>
       <div className={styles.inputGroup}>
@@ -55,7 +65,6 @@ export default function LoginForm() {
           id='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
       </div>
       {error && <p className={styles.error}>{error}</p>}
