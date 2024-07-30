@@ -23,9 +23,6 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
 
   return (
     <div className={styles.searchContainer}>
-      <label htmlFor='search' className={styles.srOnly}>
-        Search
-      </label>
       <input
         id='search'
         className={styles.input}

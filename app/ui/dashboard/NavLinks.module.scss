@@ -1,6 +1,6 @@
 .link {
   display: flex;
-  height: 48px;
+  height: 4.8rem;
   flex-grow: 1;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,7 @@
   border-radius: 0.375rem;
   background-color: #f9fafb;
   padding: 0.75rem;
-  font-size: 0.875rem;
+  font-size: 1.4rem;
   font-weight: 500;
   &:hover {
     background-color: #e0f2fe;
@@ -26,7 +26,7 @@
   }
 
   .link-icon {
-    width: 1.5rem;
+    width: 2rem;
   }
 
   .link-text {
