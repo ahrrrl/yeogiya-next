@@ -11,8 +11,6 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const router = useRouter();
-
   const { login: setLogin } = useUserStore((state) => state);
 
   interface CustomError extends Error {

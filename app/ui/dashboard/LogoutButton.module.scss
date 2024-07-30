@@ -24,7 +24,10 @@
     }
 
     .power-icon {
-      width: 2rem;
+      position: relative;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
     }
 
     .sign-out-text {

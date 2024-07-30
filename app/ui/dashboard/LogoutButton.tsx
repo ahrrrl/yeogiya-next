@@ -5,11 +5,13 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import styles from './LogoutButton.module.scss';
+import useUserStore from '@/app/bearStore/store';
+import Image from 'next/image';
 
 function LogoutButton() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
-
+  const { user, logout } = useUserStore((state) => state);
   useEffect(() => {
     const refreshToken = Cookies.get('refreshToken');
     setIsLoggedIn(!!refreshToken);
@@ -18,6 +20,7 @@ function LogoutButton() {
     // 쿠키 삭제
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');
+    logout();
     // 로그인 페이지로 리디렉션
     // router.push('/login');
     window.location.href = '/login';
@@ -34,8 +37,20 @@ function LogoutButton() {
         className={styles['sign-out-button']}
         onClick={handleLogout}
       >
-        <PowerIcon className={styles['power-icon']} />
-        <div className={styles['sign-out-text']}>로그아웃</div>
+        <div className={styles['power-icon']}>
+          <Image
+            fill
+            object-fit='cover'
+            src={
+              user?.profileImageUrl
+                ? user.profileImageUrl
+                : '/default-profile.png'
+            }
+            alt='user-profile'
+          />
+        </div>
+
+        <div className={styles['sign-out-text']}>{user?.nickname}</div>
       </button>
     </form>
   ) : (
