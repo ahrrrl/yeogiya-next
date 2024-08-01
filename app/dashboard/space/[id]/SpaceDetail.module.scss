@@ -1,0 +1,174 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.subtitleSmall {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.bannerImageContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 1.5rem;
+}
+
+.bannerImage {
+  border-radius: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.subImagesContainer {
+  margin-top: 2rem;
+}
+
+.subImagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.subImageContainer {
+  position: relative;
+  width: 100%;
+  height: 150px;
+}
+
+.subImage {
+  border-radius: 0.5rem;
+}
+
+.calendarWrapper {
+  :global {
+    .rbc-month-view {
+      background-color: #f7fbfd;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 5px rgba(113, 231, 255, 0.15);
+
+      .rbc-header {
+        background-color: #5ac8e0;
+        color: #ffffff;
+        font-weight: bold;
+        padding: 10px;
+        border: none;
+      }
+
+      .rbc-day-bg {
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: #e8f6fa;
+        }
+      }
+
+      .rbc-date-cell {
+        text-align: center;
+        padding: 5px;
+        font-size: 0.9em;
+        color: #4a4a4a;
+      }
+
+      .rbc-today {
+        background-color: #e0f4f9;
+      }
+
+      .rbc-event {
+        background-color: #5ac8e0;
+        border: 1px solid #48b6ce;
+        border-radius: 15px;
+        color: #ffffff;
+        padding: 2px 8px;
+        font-size: 0.8em;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #48b6ce;
+          transform: scale(1.03);
+        }
+      }
+
+      .rbc-show-more {
+        background-color: transparent;
+        color: #3a9cb3;
+        font-weight: bold;
+        font-size: 0.8em;
+
+        &:hover {
+          color: #2e7d8f;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .rbc-overlay {
+      background-color: #f7fbfd;
+      border: 1px solid #5ac8e0;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(113, 231, 255, 0.2);
+      padding: 10px;
+
+      .rbc-event {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+.outsideMonth {
+  opacity: 0.5;
+  background-color: #fafcfd !important;
+}
+
+.selectedEvent {
+  background-color: #e8f6fa;
+  border: 1px solid #5ac8e0;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 1rem;
+  font-size: 0.9em;
+  color: #3a9cb3;
+}
+
+.reserveButton {
+  margin-top: 0.5rem;
+  background-color: #5ac8e0;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #48b6ce;
+    transform: scale(1.03);
+  }
+}
