@@ -6,9 +6,6 @@ export default function LoginPage() {
     <main className={styles.loginContainer}>
       <div className={styles.loginBox}>
         <h3 className={styles.title}>로그인</h3>
-        <h3 className={styles.title}>
-          id: mokoko@lost.com password: mokokolost
-        </h3>
         <LoginForm />
       </div>
     </main>

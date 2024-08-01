@@ -23,26 +23,39 @@ export default async function SpaceDetailPage({
         />
       </div>
 
-      <div className={styles.grid}>
-        <div>
-          <h2 className={styles.subtitle}>공간 정보</h2>
-          <p>
-            <strong>카테고리:</strong> {detail.category}
-          </p>
-          <p>
-            <strong>가격:</strong> {detail.price}원
-          </p>
-          <p>
-            <strong>주소:</strong> {detail.address}
-          </p>
-          <p>
-            <strong>설명:</strong> {detail.description}
-          </p>
+      <div className={styles.infoSection}>
+        <h2 className={styles.subtitle}>공간 정보</h2>
+        <div className={styles.infoGrid}>
+          <div className={styles.infoItem}>
+            <span className={styles.infoLabel}>카테고리</span>
+            <span className={styles.infoValue}>{detail.category}</span>
+          </div>
+          <div className={styles.infoItem}>
+            <span className={styles.infoLabel}>가격</span>
+            <span className={styles.infoValue}>
+              {detail.price.toLocaleString()}원
+            </span>
+          </div>
+          <div className={styles.infoItem}>
+            <span className={styles.infoLabel}>주소</span>
+            <span className={styles.infoValue}>{detail.address}</span>
+          </div>
+        </div>
 
+        <div className={styles.descriptionBox}>
+          <h3 className={styles.descriptionTitle}>설명</h3>
+          <p className={styles.description}>{detail.description}</p>
+        </div>
+
+        <div className={styles.reviewBox}>
           <h3 className={styles.subtitleSmall}>리뷰</h3>
-          <p>
-            <strong>평점:</strong> {detail.rating}/5 ({detail.reviewCount} 리뷰)
-          </p>
+          <div className={styles.rating}>
+            <span className={styles.ratingScore}>{detail.rating}</span>
+            <span className={styles.ratingMax}>/5 ★</span>
+            <span className={styles.reviewCount}>
+              ({detail.reviewCount} 리뷰)
+            </span>
+          </div>
         </div>
 
         <div>
